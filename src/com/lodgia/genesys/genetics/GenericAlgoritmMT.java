@@ -112,16 +112,13 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			GAThreads[ i ] = new GenericAlgoritmMTThread();
 			//GASystemThreads[ i ] =new Thread( GAThreads[ i ] );
 		}
-	
-       
-        
+		
 		init();
 					
 	}
 	
 	public void init(  )
 	{
-		
 		
 		state=STATE_INIT;
 		
@@ -137,7 +134,7 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			System.out.println("--- --- --- --- --- ---");
 			
 			l.debug("Initialize");
-			//evaluation.init();
+
 			population=new Population(gmp,debugLevel);
 			stats=new Stats();
 			
@@ -159,10 +156,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 
 			stats_winnerscore=0.0;
 			stats_avgscore=0.0;
-			//maxstaticcycles=DEFAULTMAXSTATICCYCLES;
-			
-			//evaluation function
-			
 			
 			state=STATE_LAUNCHITERATION;
 			currentprocessingmember=0;
@@ -180,7 +173,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			System.out.println("Next Iteration");
 			System.out.println("--- --- --- --- --- ---");
 			
-			
 			if( iteration == 2) {
 				thisPopulationSize = populationSize;
 			}
@@ -190,9 +182,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			System.out.println("  ResultsArray.size:		" + ResultsArray.length);
 			System.out.println("  ThreadCount:			" + threadcount);
 			
-			//
-			
-
 			for( int i=0; i<this.SimPopIncreaseMax;i++ ) {
 				ResultsArray[ i ] = null;
 			}
@@ -311,13 +300,8 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			winner=population.winner();
 
 			if( winner != null ) {
-				//System.err.println("it" + iteration + " Last keeping winner " + winner.getAsString());
-				//System.err.println("it" + iteration + " Last keeping winner score " + population.topscore );
 				
 				int lastwinnerIndex = population.findMemberGenome( winner );
-				///!!!System.err.println("it" + iteration + " Last keeping winner now index " +  lastwinnerIndex );
-				///!!!System.err.println("it" + iteration + " Last keeping winner now  " +
-				///!!!		population.members.get( lastwinnerIndex).getAsString() );
 				
 				if( lastwinnerIndex >= 0 ) {
 					System.out.println("  Maxscore: " + population.scores.get( lastwinnerIndex ) );
@@ -330,9 +314,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			
 			
 			winner=population.winner().getCopy();
-			///!!!System.err.println("it" + iteration + " keeping winner " + winner.getAsString());
-			///!!!System.err.println("it" + iteration + " keeping winner score " + population.topscore );
-
 			
 			tmp = population.winner().getCopy();
 			keeplist.add(tmp);
@@ -340,7 +321,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			tmp = population.winner().getCopy();
 			tmp.mutate1genome( population.r );
 			keeplist.add(winner);
-
 			
 			for(int t=0;t<injectrandomagents_numberof; t++)
 			{
@@ -352,13 +332,10 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			
 			
 			//mating pool
-			
 			population.createMatingPool(matingpoolkeepercentage);
 
-
 			winnerscore=population.winnerScore();
-			
-			
+				
 			if(lastwinnerscore <= winnerscore && 
 					lastwinnerscorestaticcycles > maxstaticcycles)
 			{
@@ -413,7 +390,7 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			return RV_PROCESSINGDONE;
 		}	
 		
-			/*
+		/*
 			 * 
 			 * step = threadcount
 			 * For t=1 to threadcount - 1
@@ -433,7 +410,7 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 			 * 
 			 * return RV_STILLPROCESSING;
 			 * 
-			 */
+		 */
 			
 
 
@@ -447,7 +424,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 	public void setMaxNoGrowCycles(int _maxstaticcycles)
 	{
 		
-		
 		maxstaticcycles=_maxstaticcycles;
 		
 	}
@@ -456,14 +432,12 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 	public void setNumberOfRandomAgentsToInsert(int y)
 	{
 		
-		
 		injectrandomagents_numberof=y;
 		
 	}
 	
 	public void setMatingpoolKeepingPercentage(double y)
 	{
-		
 		
 		matingpoolkeepercentage=y;
 		
@@ -472,7 +446,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 	
 	public void setMutationChance(int c)
 	{
-		
 		
 		chancemutation=c;
 		
@@ -564,8 +537,4 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 	}
 
 
-
-
-	
-	
 }
