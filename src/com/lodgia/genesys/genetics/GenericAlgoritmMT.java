@@ -35,8 +35,6 @@ public class GenericAlgoritmMT implements InterfaceSearchAlgoritm {
 	
 	int threadcount=8;
 	
-	//final int  DEFAULTMAXSTATICCYCLES=10;
-	
 	InterfaceEvaluationFunction evaluations[];
 	
 	int initialPopulationSize, populationSize, thisPopulationSize, currentprocessingmember;
